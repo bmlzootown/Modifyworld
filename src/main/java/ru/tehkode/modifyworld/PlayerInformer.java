@@ -10,8 +10,6 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
-import ru.tehkode.permissions.PermissionUser;
-import ru.tehkode.permissions.bukkit.PermissionsEx;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -22,7 +20,7 @@ public class PlayerInformer {
 	public final static String DEFAULT_MESSAGE_FORMAT = "&f[&2Modifyworld&f]&4 %s";
 	// Default message format
 	protected String messageFormat = DEFAULT_MESSAGE_FORMAT;
-	protected Map<String, String> messages = new HashMap<String, String>();
+	protected Map<String, String> messages = new HashMap<>();
 	// Flags
 	protected boolean enabled = false;
 	protected boolean individualMessages = false;
@@ -81,47 +79,12 @@ public class PlayerInformer {
 		if (Bukkit.getServer().getPluginManager().isPluginEnabled("Vault")) {
 			message = getMessageVault(player, permission);
 		}
-		if (message == null) {
-			try {
-				Class.forName("ru.tehkode.permissions.bukkit.PermissionsEx");
-				message = getMessagePEX(player, permission);
-			} catch (ClassNotFoundException ignore) {
-			}
-		}
 
 		if (message != null) {
 			return message;
 		}
 
 		return getMessage(permission);
-	}
-
-	public String getMessagePEX(Player player, String permission) {
-		if (PermissionsEx.isAvailable()) {
-			PermissionUser user = PermissionsEx.getUser(player);
-
-			String message;
-			String perm = permission;
-			int index;
-
-			while ((index = perm.lastIndexOf(".")) != -1) {
-				perm = perm.substring(0, index);
-
-				message = user.getOption("permission-denied-" + perm, player.getWorld().getName(), null);
-				if (message == null) {
-					continue;
-				}
-
-				return message;
-			}
-
-			message = user.getOption("permission-denied", player.getWorld().getName(), null);
-
-			if (message != null) {
-				return message;
-			}
-		}
-		return null;
 	}
 
 	private String getMessageVault(Player player, String permission) {
@@ -174,7 +137,7 @@ public class PlayerInformer {
 		} else if (obj instanceof ItemStack) { // Items
 			return describeMaterial(((ItemStack) obj).getType());
 		} else if (obj instanceof Entity) { // Entities
-			return ((Entity) obj).getType().toString().toLowerCase().replace("_", " ");
+			return ((Entity) obj).getType().toString().toLowerCase();
 		} else if (obj instanceof Block) { // Blocks
 			return describeMaterial(((Block) obj).getType());
 		} else if (obj instanceof Material) { // Just material
@@ -185,13 +148,24 @@ public class PlayerInformer {
 	}
 
 	private String describeMaterial(Material material) {
-		// TODO: implement data id
-
-		if (material == Material.INK_SAC) {
+		if (material == Material.INK_SAC
+			|| material == Material.DANDELION_YELLOW
+			|| material == Material.CYAN_DYE
+			|| material == Material.GRAY_DYE
+			|| material == Material.LIGHT_BLUE_DYE
+			|| material == Material.LIGHT_GRAY_DYE
+			|| material == Material.LIME_DYE
+			|| material == Material.MAGENTA_DYE
+			|| material == Material.ORANGE_DYE
+			|| material == Material.PINK_DYE
+			|| material == Material.CACTUS_GREEN
+			|| material == Material.PURPLE_DYE
+			|| material == Material.LAPIS_LAZULI
+			|| material == Material.BONE_MEAL
+			|| material == Material.COCOA) {
 			return "dye";
 		}
-
-		return material.toString().toLowerCase().replace("_", " ");
+		return material.toString().toLowerCase();
 	}
 
 	// For backward compatibility

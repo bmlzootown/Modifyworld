@@ -104,7 +104,7 @@ public class PlayerListener extends ModifyworldListener {
 
 	@EventHandler(priority = EventPriority.LOW)
 	public void onPlayerBucketEmpty(PlayerBucketEmptyEvent event) {
-		String bucketName = event.getBucket().toString().toLowerCase().replace("_bucket", ""); // WATER_BUCKET -> water
+		String bucketName = event.getBucket().toString().toLowerCase().replace("_bucket", ""); // WATER_BUCKET -> water, LAVA_BUCKET -> lava, SALMON_BUCKET -> salmon, etc.
 		if (permissionDenied(event.getPlayer(), "modifyworld.bucket.empty", bucketName)) {
 			event.setCancelled(true);
 		}
@@ -112,7 +112,7 @@ public class PlayerListener extends ModifyworldListener {
 
 	@EventHandler(priority = EventPriority.LOW)
 	public void onPlayerBucketFill(PlayerBucketFillEvent event) {
-		String materialName = event.getBlockClicked().getType().toString().toLowerCase().replace("stationary_", ""); // STATIONARY_WATER -> water
+		String materialName = event.getBlockClicked().getType().toString().toLowerCase(); // STATIONARY_WATER doesn't exist anymore... Just WATER
 
 		if ("air".equals(materialName)) { // This should be milk
 			materialName = "milk";
@@ -131,7 +131,7 @@ public class PlayerListener extends ModifyworldListener {
 	}
 
 	@EventHandler(priority = EventPriority.LOW)
-	public void onPlayerChat(PlayerChatEvent event) {
+	public void onPlayerChat(PlayerChatEvent event) { // AsyncPlayerChatEvent will need to be implemented eventually? I say screw it for now, though. *shrugs*
 		if (permissionDenied(event.getPlayer(), "modifyworld.chat")) {
 			event.setCancelled(true);
 		}

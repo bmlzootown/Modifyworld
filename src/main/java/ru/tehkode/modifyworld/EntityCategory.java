@@ -23,12 +23,11 @@ import java.util.HashMap;
 import java.util.Map;
 import org.bukkit.entity.*;
 
-
 public enum EntityCategory {
 	PLAYER("player", Player.class),
 	ITEM("item", Item.class),
-	ANIMAL("animal", Animals.class, Squid.class),
-	MONSTER("monster", Monster.class, Slime.class, EnderDragon.class, Ghast.class ),
+	ANIMAL("animal", Animals.class, Squid.class, WaterMob.class, Snowman.class),
+	MONSTER("monster", Monster.class, Slime.class, EnderDragon.class, Ghast.class, MagmaCube.class, Phantom.class, Shulker.class ),
 	NPC("npc", NPC.class),
 	PROJECTILE("projectile", Projectile.class);
 	
