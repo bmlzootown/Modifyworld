@@ -1,0 +1,11 @@
+language: java
+before_deploy:
+  - export TARGET=$(ls target/ModifyWorld-*.jar)
+deploy:
+  provider: releases
+  api_key:
+    secure: $GITHUB_TOKEN
+  skip_cleanup: true
+  file: "${TARGET}"
+  on:
+    tags: true

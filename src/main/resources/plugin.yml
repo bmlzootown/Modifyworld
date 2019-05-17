@@ -1,7 +1,7 @@
-name: Modifyworld
+name: ${project.name}
 main: ru.tehkode.modifyworld.bukkit.Modifyworld
 soft-depend: [ Vault ]
-version: 1.20-SNAPSHOT
+version: ${project.version}
 author: t3hk0d3, bmlzootown
 description: World modification permission ruleset
 api-version: 1.13
