@@ -275,12 +275,11 @@ public class PlayerListener extends ModifyworldListener {
 			}
 			
 			if (player.getInventory().getItemInMainHand().getItemMeta() instanceof SpawnEggMeta) {
-				String matStr = mat.toString();
-				if(matStr.endsWith("_SPAWN_EGG")) {
-					matStr = matStr.substring(0, matStr.length() - "_SPAWN_EGG".length());
+				String entityStr = mat.toString();
+				if(entityStr.endsWith("_SPAWN_EGG")) {
+					entityStr = entityStr.substring(0, entityStr.length() - "_SPAWN_EGG".length());
 				}
-				EntityType entityType = EntityType.valueOf(matStr);
-				if (permissionDenied(player, "modifyworld.spawn", (entityType == null ? matStr : entityType))) {
+				if (permissionDenied(player, "modifyworld.spawn", entityStr)) {
 					event.setUseItemInHand(Result.DENY);
 				}
 				return; // no need to check further
