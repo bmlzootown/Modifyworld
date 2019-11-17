@@ -149,7 +149,7 @@ public class PlayerInformer {
 
 	private String describeMaterial(Material material) {
 		if (material == Material.INK_SAC
-			|| material == Material.DANDELION_YELLOW
+			|| material == Material.YELLOW_DYE
 			|| material == Material.CYAN_DYE
 			|| material == Material.GRAY_DYE
 			|| material == Material.LIGHT_BLUE_DYE
@@ -158,7 +158,7 @@ public class PlayerInformer {
 			|| material == Material.MAGENTA_DYE
 			|| material == Material.ORANGE_DYE
 			|| material == Material.PINK_DYE
-			|| material == Material.CACTUS_GREEN
+			|| material == Material.GREEN_DYE
 			|| material == Material.PURPLE_DYE
 			|| material == Material.LAPIS_LAZULI
 			|| material == Material.BONE_MEAL
