@@ -7,5 +7,3 @@ deploy:
     secure: $GITHUB_TOKEN
   skip_cleanup: true
   file: "${TARGET}"
-  on:
-    tags: true

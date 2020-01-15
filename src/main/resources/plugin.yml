@@ -4,4 +4,4 @@ soft-depend: [ Vault ]
 version: ${project.version}
 author: t3hk0d3, bmlzootown
 description: World modification permission ruleset
-api-version: 1.14
+api-version: 1.15
